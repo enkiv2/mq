@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+rm -f .$$
+cat "$@" | sed 's/[^A-Za-z]/\n/g' | grep . >| .$$
+mas=$(cat .$$ | egrep -i '^h(e|im|imself)$' | wc -l)
+fem=$(cat .$$ | egrep -i '^(she|her|herself)$' | wc -l)
+echo $(((mas*1.0/(mas+fem))*100.0))
+rm -f .$$
